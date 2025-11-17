@@ -25,4 +25,16 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest -v
+          pytest --html=test-report.html --self-contained-html --cov=app --cov-report=html
+      
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-report
+          path: test-report.html
+      
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html-report
+          path: htmlcov/
